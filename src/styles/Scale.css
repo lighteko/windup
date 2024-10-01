@@ -1,11 +1,14 @@
 .outline {
   fill: white;
+  background-color: transparent;
 }
 
 .inner {
   fill: #1a1c1d;
+  background-color: transparent;
 }
 
 .scale {
   width: 10vw;
+  background-color: transparent;
 }

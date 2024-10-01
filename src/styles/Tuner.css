@@ -1,4 +1,5 @@
 #key-signatures {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9,14 +10,42 @@
   color: #abb1bd;
   font-size: 2.3rem;
   font-weight: 900;
+  background-color: transparent;
 }
 
 #key {
   padding: 0 8% 0 8%;
 }
 
+#line {
+  position: absolute;
+  top: 0;          
+  left: 50%;       
+  height: 100%;    
+  width: 1px;     
+  background-color: #2B2C31; 
+  z-index: 0;    
+  transform: translateX(-50%); 
+}
+
+#scale-path {
+  position: relative;
+  background-color: transparent;
+}
+
 .tuner {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#keys {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#bottom {
+  height: 20vw;
 }

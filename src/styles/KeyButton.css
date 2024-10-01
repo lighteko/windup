@@ -16,14 +16,11 @@
   position: absolute;
   background-color: #2e2f34; 
   color: white; 
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
-.key-button:checked + #key-button-text {
-  background-color: white;
-  color: #2e2f34;
-}
-
-.key-button:checked {
+.key-button:checked + #key-button-text, .key-button:checked {
   background-color: white;
   color: #2e2f34;
 }

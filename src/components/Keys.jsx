@@ -5,9 +5,9 @@ import "../styles/Keys.css";
 function Keys({ keys }) {
   return (
     <section className="keys">
-        {keys.map((key, index) => (
-            <KeyButton key={index} keyName={key} />
-        ))}
+      {keys.map((key, index) => (
+        <KeyButton index={index} keyName={key} />
+      ))}
     </section>
   );
 }
