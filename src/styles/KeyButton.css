@@ -1,0 +1,38 @@
+[type="radio"] {
+  appearance: none;
+}
+
+.key-button {
+  width: 15vw;
+  height: 15vw;
+  border-radius: 50%;
+  background-color: #2e2f34;
+  color: white;
+  border: 0;
+  font-size: 1.6em;
+}
+
+#key-button-text {
+  position: absolute;
+  background-color: #2e2f34; 
+  color: white; 
+}
+
+.key-button:checked + #key-button-text {
+  background-color: white;
+  color: #2e2f34;
+}
+
+.key-button:checked {
+  background-color: white;
+  color: #2e2f34;
+}
+
+#key-button-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  margin: 5vw;
+}

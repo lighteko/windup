@@ -1,0 +1,22 @@
+#key-signatures {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  margin-top: 5vh;
+  width: 100%;
+  color: #abb1bd;
+  font-size: 2.3rem;
+  font-weight: 900;
+}
+
+#key {
+  padding: 0 8% 0 8%;
+}
+
+.tuner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
