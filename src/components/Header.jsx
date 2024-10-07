@@ -1,11 +1,11 @@
 import "../styles/Header.css";
 
-function Header() {
+function Header({ tunes, setTune, tune }) {
   return (
     <>
       <header>
         <h1>WIND UP</h1>
-        <span>Standard</span>
+        <span>{tune}</span>
       </header>
     </>
   );

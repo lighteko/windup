@@ -6,7 +6,7 @@ function Keys({ keys, setSelectedKey, setAudioBuffer }) {
   return (
     <section className="keys">
       {keys.map((key, index) => (
-        <KeyButton index={index} keyName={key} setSelected={setSelectedKey} setAudioBuffer={setAudioBuffer}/>
+        <KeyButton key={index} keyName={key} setSelected={setSelectedKey} setAudioBuffer={setAudioBuffer}/>
       ))}
     </section>
   );

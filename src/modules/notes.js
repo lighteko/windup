@@ -19,12 +19,13 @@ function note2Freq(note) {
 
 function cleanNoteName(note) {
   note.replace("[0-9]", "");
+  note.replace("S", "#");
   return note.replace("N", "");
 }
 
 function keyDifference(key, inputPitch) {
   const freq = note2Freq(key);
-  return freq - inputPitch;
+  return inputPitch - freq;
 }
 /**
  * 
@@ -32,20 +33,20 @@ function keyDifference(key, inputPitch) {
  * @returns {Object} [diff, bool(IDLE)]
  */
 function diffNormalizer(diff) {
-  if (diff < -500) {
+  if (diff < -1000) {
     return {
       diff: 0,
-      status: true,
+      isIdle: true,
     };
-  } else if (diff >= 500) {
+  } else if (diff >= 1000) {
     return {
       diff: 500,
-      status: false,
+      isIdle: false,
     }
   } else {
     return {
-      diff: diff,
-      status: false
+      diff: diff / 2,
+      isIdle: false
     };
   }
 }

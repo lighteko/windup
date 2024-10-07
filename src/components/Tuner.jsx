@@ -2,28 +2,33 @@ import "../styles/Tuner.css";
 import Keys from "./Keys";
 import Scale from "./Scale";
 import React, { useState, useEffect } from "react";
-import useAudioBuffer from "../hooks/useAudioBuffer";
-import harmonicProductSpectrum from "../modules/HPS";
+import usePitch from "../hooks/usePitch";
 import { keyDifference, diffNormalizer } from "../modules/notes";
-import Canvas from "./canvas";
 
-function Tuner() {
+function Tuner({ tune }) {
   const [selectedKey, setSelectedKey] = useState(null);
-  const [scaleMargin, setScaleMargin] = useState(0);
-  const [scaleStatus, setScaleStatus] = useState(false);
-  const [scaleColor, setScaleColor] = useState("white");
-  const audioBuffer = useAudioBuffer();
+  const pitch = usePitch();
+  const [scaleState, setScaleState] = useState({
+    color: "white",
+    diff: 0,
+    isIdle: true,
+  });
 
   useEffect(() => {
-    if (audioBuffer && selectedKey) {
-      const frequency = harmonicProductSpectrum(audioBuffer, 5);
-      const difference = keyDifference(selectedKey, frequency);
+    if (selectedKey) {
+      if (!pitch || pitch === 0) {
+        setScaleState({ color: "white", diff: 0, isIdle: true });
+        return;
+      }
+      const difference = keyDifference(selectedKey, pitch);
       const norm = diffNormalizer(difference);
-      setScaleMargin(norm.diff);
-      setScaleStatus(norm.status);
-      setScaleColor(norm.diff <= 10 && norm.diff >= -10 && !norm.status ? "#5AD082" : "#D43636");
+      const color =
+        norm.diff <= 1 && norm.diff >= -1 && !norm.isIdle
+          ? "#5AD082"
+          : "#D43636";
+      setScaleState({ color, diff: norm.diff, isIdle: norm.isIdle });
     }
-  }, [audioBuffer, selectedKey]);
+  }, [pitch, selectedKey]);
 
   return (
     <>
@@ -33,13 +38,12 @@ function Tuner() {
           <span id="key">♭</span>
           <span id="key">♯</span>
         </section>
-        <Scale color={scaleColor} margin={scaleMargin} status={scaleStatus}/>
+        <Scale state={scaleState} />
         <div id="bottom"></div>
-        <Canvas />
       </section>
       <section id="keys">
-        <Keys keys={["DN3", "AN2", "EN2"]} setSelectedKey={setSelectedKey} />
-        <Keys keys={["GN3", "BN3", "EN4"]} setSelectedKey={setSelectedKey} />
+        <Keys keys={tune.left} setSelectedKey={setSelectedKey} />
+        <Keys keys={tune.right} setSelectedKey={setSelectedKey} />
       </section>
     </>
   );
