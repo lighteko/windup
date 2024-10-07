@@ -1,11 +1,17 @@
 import "../styles/Header.css";
 
-function Header({ tunes, setTune, tune }) {
+function Header({ tunes, setTune }) {
   return (
     <>
       <header>
         <h1>WIND UP</h1>
-        <span>{tune}</span>
+        <select onChange={(e) => setTune(e.target.value)}>
+          {Object.keys(tunes).map((tuneName) => (
+            <option key={tuneName} value={tuneName}>
+              {tuneName}
+            </option>
+          ))}
+        </select>
       </header>
     </>
   );

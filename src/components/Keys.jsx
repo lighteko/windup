@@ -1,6 +1,5 @@
 import React from "react";
 import KeyButton from "../components/KeyButton.jsx";
-import "../styles/Keys.css";
 
 function Keys({ keys, setSelectedKey, setAudioBuffer }) {
   return (

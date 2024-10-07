@@ -14,9 +14,16 @@ Header h1 {
   text-align: start;
 }
 
-Header span {
+select, select:focus, select:active  {
+  border: 0;
   color: white;
-  padding-left: 1rem;
   font-size: 1.6rem;
+  font-weight: 200;
+  padding-left: 1rem;
+  outline: none;
+}
+
+option {
+  font-size: 1rem;
   font-weight: 200;
 }

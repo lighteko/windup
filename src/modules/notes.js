@@ -18,9 +18,9 @@ function note2Freq(note) {
 }
 
 function cleanNoteName(note) {
-  note.replace("[0-9]", "");
-  note.replace("S", "#");
-  return note.replace("N", "");
+  let res = note.replace("S", "#");
+  res = res.replace("N", "");
+  return res;
 }
 
 function keyDifference(key, inputPitch) {
