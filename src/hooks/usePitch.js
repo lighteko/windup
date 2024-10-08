@@ -15,6 +15,7 @@ function usePitch() {
     const inputBuffer = new Float32Array(analyserNode.current.fftSize);
 
     const updatePitch = () => {
+      window.alert("Updating Pitch was initiaited");
       analyserNode.current.getFloatTimeDomainData(inputBuffer);
       const [detectedPitch] = detector.current.findPitch(inputBuffer, audioContext.current.sampleRate);
       setPitch(detectedPitch);
