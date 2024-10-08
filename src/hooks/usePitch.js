@@ -16,11 +16,9 @@ function usePitch() {
 
     const updatePitch = () => {
       analyserNode.current.getFloatTimeDomainData(inputBuffer);
-      window.alert("1");
       const [detectedPitch] = detector.current.findPitch(inputBuffer, audioContext.current.sampleRate);
-      window.alert("2");
       setPitch(detectedPitch);
-      window.alert("3");
+      window.alert(detectedPitch);
     };
 
     navigator.mediaDevices.getUserMedia({ audio: true })
