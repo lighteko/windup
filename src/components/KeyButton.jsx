@@ -1,18 +1,10 @@
 import React from "react";
 import "../styles/KeyButton.css";
-import { loadAudioFile, playAudioWithFrequency } from "../modules/audio";
-import { note2Freq, cleanNoteName } from "../modules/notes";
+import { cleanNoteName } from "../modules/notes";
+import useAudio from "../hooks/useAudio";
 
 function KeyButton({ keyName, index, setSelected }) {
-  const audio = loadAudioFile(`${process.env.PUBLIC_URL}/guitar-c4.wav`);
-
-  const playNote = (note) => {
-    setSelected(note);
-    const freq = note2Freq(note);
-    audio.then((audioBuffer) => {
-      playAudioWithFrequency(audioBuffer, freq);
-    });
-  };
+  const { playNote } = useAudio(`${process.env.PUBLIC_URL}/guitar-c4.wav`);
 
   return (
     <div id="key-button-container">
@@ -22,7 +14,10 @@ function KeyButton({ keyName, index, setSelected }) {
         id={index + keyName}
         value={keyName}
         className="key-button"
-        onClick={() => playNote(keyName)}
+        onClick={() => {
+          setSelected(keyName);
+          playNote(keyName);
+        }}
       />
       <label htmlFor={index + keyName} id="key-button-text">
         {cleanNoteName(keyName)}
