@@ -1,11 +1,11 @@
 import React from "react";
 import KeyButton from "../components/KeyButton.jsx";
 
-function Keys({ keys, setSelectedKey, setAudioBuffer }) {
+function Keys({ keys, setSelectedKey }) {
   return (
     <section className="keys">
       {keys.map((key, index) => (
-        <KeyButton key={index} keyName={key} setSelected={setSelectedKey} setAudioBuffer={setAudioBuffer}/>
+        <KeyButton key={index} keyName={key} setSelected={setSelectedKey} />
       ))}
     </section>
   );
