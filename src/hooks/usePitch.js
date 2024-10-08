@@ -10,7 +10,7 @@ function usePitch(initialize) {
   const [toggle, setToggle] = useState(initialize);
 
   useEffect(() => {
-    if (!toggle) return;
+    // if (!toggle) return;
     audioContext.current = new (window.AudioContext ||
       window.webkitAudioContext)();
     analyserNode.current = audioContext.current.createAnalyser();
