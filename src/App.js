@@ -5,6 +5,7 @@ import useTunes from "./hooks/useTunes";
 
 function App() {
   const { tunes, tune, setTune } = useTunes();
+  console.log("Rendered App");
   return (
     <>
       <Header tunes={tunes} setTune={setTune} />
