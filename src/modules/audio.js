@@ -9,6 +9,7 @@ async function loadAudioFile(url) {
 
 function playAudioWithFrequency(audioBuffer, frequency) {
   const source = audioContext.createBufferSource();
+  console.log("Playing Audio");
   source.buffer = audioBuffer;
   source.playbackRate.setValueAtTime(
     frequency / 261.63,
