@@ -7,7 +7,7 @@ import { keyDifference, diffNormalizer } from "../modules/notes";
 
 function Tuner({ tune }) {
   const [selectedKey, setSelectedKey] = useState(null);
-  const [pitch, initPitch] = usePitch(false);
+  const [pitch, pitchToggle] = usePitch(false);
   const [scaleState, setScaleState] = useState({
     color: "white",
     diff: 0,
@@ -18,7 +18,7 @@ function Tuner({ tune }) {
 
   useEffect(() => {
     if (selectedKey) {
-      initPitch();
+      pitchToggle(true);
       if (!pitch || pitch === 0) {
         setScaleState({ color: "white", diff: 0, isIdle: true });
         return;
@@ -31,7 +31,7 @@ function Tuner({ tune }) {
           : "#D43636";
       setScaleState({ color, diff: norm.diff, isIdle: norm.isIdle });
     }
-  }, [pitch, selectedKey, initPitch]);
+  }, [pitch, pitchToggle, selectedKey]);
 
   return (
     <>

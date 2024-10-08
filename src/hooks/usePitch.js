@@ -7,9 +7,10 @@ function usePitch(initialize) {
   const audioContext = useRef(null);
   const analyserNode = useRef(null);
   const intervalRef = useRef(null);
-  const init = useRef(initialize);
+  const [toggle, setToggle] = useState(initialize);
 
   useEffect(() => {
+    if (!toggle) return;
     audioContext.current = new (window.AudioContext ||
       window.webkitAudioContext)();
     analyserNode.current = audioContext.current.createAnalyser();
@@ -17,7 +18,6 @@ function usePitch(initialize) {
     const inputBuffer = new Float32Array(analyserNode.current.fftSize);
 
     const updatePitch = () => {
-      if (!init.current) return;
       analyserNode.current.getFloatTimeDomainData(inputBuffer);
       const [detectedPitch] = detector.current.findPitch(
         inputBuffer,
@@ -46,13 +46,9 @@ function usePitch(initialize) {
         audioContext.current.close();
       }
     };
-  }, []);
+  }, [toggle]);
 
-  const initPitch = () => {
-    init.current = true;
-  };
-
-  return [pitch, initPitch];
+  return [pitch, setToggle];
 }
 
 export default usePitch;
