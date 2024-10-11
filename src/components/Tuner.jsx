@@ -14,6 +14,8 @@ function Tuner({ tune }) {
     isIdle: true,
   });
 
+  console.log("Rendered Tuner");
+
   useEffect(() => {
     if (selectedKey) {
       pitchToggle(true);
