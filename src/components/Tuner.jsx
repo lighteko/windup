@@ -25,7 +25,7 @@ function Tuner({ tune }) {
       }
       const difference = keyDifference(selectedKey, pitch);
       const norm = diffNormalizer(difference);
-      const color = Math.abs(norm.diff) <= 1.2 && !norm.isIdle
+      const color = Math.abs(norm.diff) <= 1.5 && !norm.isIdle
           ? "#5AD082"
           : "#D43636";
       setScaleState({ color, diff: norm.diff, isIdle: norm.isIdle });
