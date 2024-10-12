@@ -33,7 +33,7 @@ function usePitch(initialize) {
         detector.current = PitchDetector.forFloat32Array(
           analyserNode.current.fftSize
         );
-        detector.current.minVolumeDecibels = -20;
+        detector.current.minVolumeDecibels = -10;
         intervalRef.current = setInterval(updatePitch, 100);
       })
       .catch((err) => {
