@@ -6,9 +6,10 @@ function useAudio(url) {
   const [audio, setAudio] = useState(null);
 
   useEffect(() => {
-    loadAudioFile(url).then((audioBuffer) => {
-      setAudio(audioBuffer);
-    });
+    loadAudioFile(url)
+      .then((audioBuffer) => {
+        setAudio(audioBuffer);
+      });
   }, [url]);
 
   const playNote = (note) => {
@@ -16,7 +17,7 @@ function useAudio(url) {
     playAudioWithFrequency(audio, freq);
   };
 
-  return {audio, playNote};
+  return { audio, playNote };
 }
 
 export default useAudio;

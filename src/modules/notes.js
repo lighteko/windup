@@ -25,30 +25,29 @@ function cleanNoteName(note) {
 
 function keyDifference(key, inputPitch) {
   const freq = note2Freq(key);
-  return inputPitch - freq;
+  return Math.log2(inputPitch / freq) * 500;
 }
 /**
- * 
- * @param {float} diff 
+ *
+ * @param {float} diff
  * @returns {Object} [diff, bool(IDLE)]
  */
 function diffNormalizer(diff) {
-  if (diff < -1000) {
+  if (Math.abs(diff) > 1000) {
+    return {
+      diff: diff > 0 ? 500 : -500,
+      isIdle: false,
+    };
+  } else if (Math.abs(diff) > 1300) {
     return {
       diff: 0,
       isIdle: true,
     };
-  } else if (diff >= 1000) {
-    return {
-      diff: 500,
-      isIdle: false,
-    }
-  } else {
-    return {
-      diff: diff / 2,
-      isIdle: false
-    };
   }
+  return {
+    diff: diff / 2,
+    isIdle: false,
+  };
 }
 
 export { note2Freq, cleanNoteName, keyDifference, diffNormalizer };
